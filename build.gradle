@@ -22,15 +22,12 @@ allure {
 }
 
 dependencies {
-    testImplementation (
+    testImplementation(
+            "org.junit.jupiter:junit-jupiter:5.10.0",
             "com.codeborne:selenide:6.19.1",
-            "org.junit.jupiter:junit-jupiter:5.9.3",
-            "org.slf4j:slf4j-simple:2.0.16",
-            "com.github.javafaker:javafaker:1.0.2",
-            "org.junit.platform:junit-platform-launcher",
             "io.qameta.allure:allure-selenide:2.33.0"
     )
-
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.4.2")
 }
 
 tasks.withType(Test) {
@@ -42,4 +39,6 @@ tasks.withType(Test) {
             exceptionFormat "short"
         }
     }
+    systemProperty 'file.encoding', 'UTF-8'
 }
+tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
